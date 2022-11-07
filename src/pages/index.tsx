@@ -4,17 +4,19 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
+import NavBar from "../components/layout/NavBar";
+import Layout from "../components/layout/Layout";
 
 const Home: NextPage = () => {
   const hello = trpc.tweet.hello.useQuery({ text: "from tRPC" });
 
   return (
-    <main>
-      <div className="flex w-full items-center justify-center pt-6 text-2xl text-blue-500">
-        {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
-      </div>
-      <AuthShowcase />
-    </main>
+    <>
+      <Layout>
+        {/* <h1 className="text-7xl">🥵</h1> */}
+        <AuthShowcase />
+      </Layout>
+    </>
   );
 };
 

@@ -1,20 +1,44 @@
 import { type NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
-import NavBar from "../components/layout/NavBar";
 import Layout from "../components/layout/Layout";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 const Home: NextPage = () => {
-  const hello = trpc.tweet.hello.useQuery({ text: "from tRPC" });
+  const { data: session } = useSession();
+
+  const router = useRouter();
+  const tweet = trpc.tweet.create.useMutation();
+  const [tweetText, setTweetText] = useState("");
+
+  const handleCreateTweet = async () => {
+    if (!session?.user?.id) {
+      return;
+    }
+    const newTweet = tweet.mutateAsync({ text: tweetText });
+    setTweetText("");
+  };
 
   return (
     <>
       <Layout>
+        <textarea
+          className="ml-auto h-full w-full flex-1 resize-none bg-transparent text-2xl text-gray-800"
+          value={tweetText}
+          placeholder="What are you thinking about, bud?"
+          onChange={(e) => setTweetText(e.target.value)}
+          onKeyDown={(e) =>
+            e.key == "Enter" && e.shiftKey
+              ? tweetText
+                ? handleCreateTweet()
+                : null
+              : null
+          }
+        ></textarea>
         {/* <h1 className="text-7xl">🥵</h1> */}
-        <AuthShowcase />
+        {!session ? <AuthShowcase /> : null}
       </Layout>
     </>
   );

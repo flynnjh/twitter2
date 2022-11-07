@@ -13,7 +13,7 @@ const Layout = ({ children, ...props }: Props) => {
       <Head>
         <title>twitter2</title>
       </Head>
-      <div className="flex h-screen w-screen flex-col items-center justify-center">
+      <div className="flex h-screen w-screen flex-col">
         <NavBar />
         <main className="flex h-full w-full items-center justify-center bg-[#F5F8FA]">
           {children}

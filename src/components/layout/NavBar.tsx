@@ -45,7 +45,9 @@ const NavBar = () => {
       </div>
       {/* <!-- Logo --> */}
       <div className="mx-12">
-        <h1 className="hero-logo-navbar text-4xl">🕊</h1>
+        <Link href="/home">
+          <h1 className="hero-logo-navbar text-4xl hover:cursor-pointer">🕊</h1>
+        </Link>
       </div>
       {/* <!-- Right Navigation --> */}
       <div className="ml-auto flex flex-1 items-center justify-end gap-5">

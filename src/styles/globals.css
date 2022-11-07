@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 @import url(ei.css);
+
+.hero-logo-navbar {
+    transform: rotateY(180deg);
+}

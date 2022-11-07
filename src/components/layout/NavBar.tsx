@@ -45,14 +45,16 @@ const NavBar = () => {
       </div>
       {/* <!-- Logo --> */}
       <div className="mx-12">
-        <h1 className="text-4xl">🕊</h1>
+        <h1 className="hero-logo-navbar text-4xl">🕊</h1>
       </div>
       {/* <!-- Right Navigation --> */}
       <div className="ml-auto flex flex-1 items-center justify-end gap-5">
-        <img
-          className="h-10 w-10 rounded-md"
-          src={session?.user?.image as string}
-        ></img>
+        <Link href={"/" + session?.user?.username}>
+          <img
+            className="h-10 w-10 rounded-md"
+            src={session?.user?.image as string}
+          ></img>
+        </Link>
         <Link href={"/404"}>
           <div className="flex h-8 flex-row items-center justify-center gap-2 rounded-md bg-[#41B3F7] py-5 px-4 text-white">
             <i className="Icon Icon--large Icon--tweet h-8" />

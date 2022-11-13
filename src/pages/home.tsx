@@ -24,19 +24,21 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout>
-        <textarea
-          className="ml-auto h-full w-full flex-1 resize-none bg-transparent text-2xl text-gray-800"
-          value={tweetText}
-          placeholder="What are you thinking about, bud?"
-          onChange={(e) => setTweetText(e.target.value)}
-          onKeyDown={(e) =>
-            e.key == "Enter" && e.shiftKey
-              ? tweetText
-                ? handleCreateTweet()
+        <div className="flex h-full w-full p-28">
+          <textarea
+            className="ml-auto h-full w-full flex-1 resize-none bg-transparent text-2xl text-gray-800"
+            value={tweetText}
+            placeholder="What are you thinking about, bud?"
+            onChange={(e) => setTweetText(e.target.value)}
+            onKeyDown={(e) =>
+              e.key == "Enter" && e.shiftKey
+                ? tweetText
+                  ? handleCreateTweet()
+                  : null
                 : null
-              : null
-          }
-        ></textarea>
+            }
+          ></textarea>
+        </div>
         {/* <h1 className="text-7xl">🥵</h1> */}
         {!session ? <AuthShowcase /> : null}
       </Layout>

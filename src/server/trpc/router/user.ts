@@ -1,7 +1,7 @@
+import { User, tweet } from "@prisma/client";
 import { protectedProcedure, publicProcedure, router } from "../trpc";
 
 import { TRPCError } from "@trpc/server";
-import { User } from "@prisma/client";
 import { z } from "zod";
 
 export const userRouter = router({
@@ -42,4 +42,26 @@ export const userRouter = router({
         },
       });
     }),
+  getHomeTimeline: protectedProcedure.query(async ({ ctx }) => {
+    var timeline: any[] = [];
+    const following = await ctx.prisma.userFollows.findMany({
+      where: { userId: ctx.session.user.id },
+      orderBy: { createdAt: "asc" },
+    });
+    for (const i in following) {
+      // loop through userTweets, add those to new array
+      let userTweets = await ctx.prisma.tweet.findMany({
+        where: { userId: following[i]?.targetId },
+        include: { user: true },
+      });
+      for (const x in userTweets) {
+        timeline.push(userTweets[x]);
+      }
+    }
+    // sort timeline by date created
+    timeline.sort((objA, objB) => {
+      return Date.parse(objB.createdAt) - Date.parse(objA.createdAt);
+    });
+    return timeline;
+  }),
 });

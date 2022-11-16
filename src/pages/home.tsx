@@ -5,6 +5,7 @@ import { trpc } from "../utils/trpc";
 import Layout from "../components/layout/Layout";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Tweet from "../components/Tweet";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
@@ -12,6 +13,8 @@ const Home: NextPage = () => {
   const router = useRouter();
   const tweet = trpc.tweet.create.useMutation();
   const [tweetText, setTweetText] = useState("");
+
+  const homeTimeline = trpc.user.getHomeTimeline.useQuery();
 
   const handleCreateTweet = async () => {
     if (!session?.user?.id) {
@@ -24,7 +27,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout>
-        <div className="flex h-full w-full p-28">
+        <div className="flex h-full w-full flex-col p-28">
           <textarea
             className="ml-auto h-full w-full flex-1 resize-none bg-transparent text-2xl text-gray-800"
             value={tweetText}
@@ -38,8 +41,20 @@ const Home: NextPage = () => {
                 : null
             }
           ></textarea>
+          <div className="flex h-96 w-full flex-col overflow-auto md:w-2/3">
+            {homeTimeline?.data?.slice(0).map((tweet) => {
+              console.log(tweet);
+              return (
+                <div
+                  className="flex w-full items-center justify-center md:py-1"
+                  key={tweet.id}
+                >
+                  <Tweet tweet={tweet} user={tweet.user} key={tweet.id} />
+                </div>
+              );
+            })}
+          </div>
         </div>
-        {/* <h1 className="text-7xl">🥵</h1> */}
         {!session ? <AuthShowcase /> : null}
       </Layout>
     </>

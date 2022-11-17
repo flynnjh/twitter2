@@ -29,7 +29,7 @@ const Home: NextPage = () => {
       <Layout>
         <div className="mt-6 flex h-full w-full flex-col overflow-auto rounded-md border md:w-1/2">
           {/* <div className="shadow-blue-gray-100 flex h-full w-full flex-col overflow-auto rounded-lg bg-gray-50 md:shadow-lg"> */}
-          <div className="flex h-1/5 flex-col bg-[#E9F5FD] p-4">
+          <div className="border-b2 flex h-1/5 flex-col border bg-[#E9F5FD] p-4">
             <textarea
               className="mb-4 ml-auto w-full flex-1 resize-none rounded-md border-2 border-[#A8DCFB] bg-white p-2 text-lg text-gray-800 placeholder:pt-9 placeholder:font-light"
               value={tweetText}

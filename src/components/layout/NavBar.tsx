@@ -27,7 +27,7 @@ const NButton = ({ children, ...props }: Props) => {
 const NavBar = () => {
   const { data: session, status } = useSession();
   return (
-    <nav className="text-[#66757F flex w-screen flex-row items-center border-b-2 py-2 px-4">
+    <nav className="text-[#66757F z-10 flex w-screen flex-row items-center border-b-2 py-2 px-4 shadow-sm">
       {/* Left Navigation  */}
       <div className="mr-auto flex flex-1 items-center">
         <NButton link="/home">

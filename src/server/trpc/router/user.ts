@@ -46,7 +46,6 @@ export const userRouter = router({
     var timeline: any[] = [];
     const following = await ctx.prisma.userFollows.findMany({
       where: { userId: ctx.session.user.id },
-      orderBy: { createdAt: "asc" },
     });
     for (const i in following) {
       // loop through userTweets, add those to new array

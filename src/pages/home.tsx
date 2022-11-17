@@ -27,26 +27,42 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout>
-        <div className="flex h-full w-full flex-col p-28">
-          <textarea
-            className="ml-auto h-full w-full flex-1 resize-none bg-transparent text-2xl text-gray-800"
-            value={tweetText}
-            placeholder="What are you thinking about, bud?"
-            onChange={(e) => setTweetText(e.target.value)}
-            onKeyDown={(e) =>
-              e.key == "Enter" && e.shiftKey
-                ? tweetText
-                  ? handleCreateTweet()
+        <div className="mt-6 flex h-full w-full flex-col overflow-auto rounded-md border md:w-1/2">
+          {/* <div className="shadow-blue-gray-100 flex h-full w-full flex-col overflow-auto rounded-lg bg-gray-50 md:shadow-lg"> */}
+          <div className="flex h-1/5 flex-col bg-[#E9F5FD] p-4">
+            <textarea
+              className="mb-4 ml-auto w-full flex-1 resize-none rounded-md border-2 border-[#A8DCFB] bg-white p-2 text-lg text-gray-800 placeholder:pt-9 placeholder:font-light"
+              value={tweetText}
+              placeholder="What's happening?"
+              onChange={(e) => setTweetText(e.target.value)}
+              onKeyDown={(e) =>
+                e.key == "Enter" && e.shiftKey
+                  ? tweetText
+                    ? handleCreateTweet()
+                    : null
                   : null
-                : null
-            }
-          ></textarea>
-          <div className="flex h-96 w-full flex-col overflow-auto md:w-2/3">
+              }
+            ></textarea>
+            <div className="flex flex-row items-center">
+              <h1 className="ml-auto mr-4 font-light text-[#9ca8b2]">
+                {140 - tweetText.length}
+              </h1>
+              <button
+                className="flex h-8 flex-row items-center justify-center gap-2 rounded-md bg-[#41B3F7] py-5 px-4 text-white"
+                onClick={() => {
+                  handleCreateTweet();
+                }}
+              >
+                <i className="Icon Icon--large Icon--tweet h-8" />
+                <h1 className="">Tweet</h1>
+              </button>
+            </div>
+          </div>
+          <div className="flex h-96 w-full flex-col">
             {homeTimeline?.data?.slice(0).map((tweet) => {
-              console.log(tweet);
               return (
                 <div
-                  className="flex w-full items-center justify-center md:py-1"
+                  className="flex h-full w-full items-center justify-center border-b-2"
                   key={tweet.id}
                 >
                   <Tweet tweet={tweet} user={tweet.user} key={tweet.id} />

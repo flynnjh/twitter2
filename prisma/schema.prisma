@@ -63,7 +63,7 @@ model tweet {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  text   String @db.VarChar(2000)
+  text   String @db.VarChar(140)
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
   // bookmark bookmark[]

@@ -34,7 +34,7 @@ and the dedication of a team of people who are committed to the mission of your 
 
 ## Notes
 
-I have no intention to continue this project, and so code is provided as is and I probably won't get round to documenting what I have written. This project is under the MIT License, so go nuts (within the license's limitations, of course)
+I have no intention to continue this project, and so code is provided as is and I probably won't get round to documenting what I have written. This project is under the MIT License, so go nuts (within the license's limitations, of course).
 
 ## Attribution
 

@@ -25,12 +25,20 @@ Sure, you can build out Twitter's basic functionality (tweets, likes, retweets, 
 
 However, what you can't replicate:
 
-- content moderation
-- government compliance
-- QA testing
+- content moderation;
+- government compliance;
+- QA testing;
 - expertise in areas of your codebase
 
 and the dedication of a team of people who are committed to the mission of your company.
+
+In terms of skills I have learnt:
+
+- how to use `@db.generated()` in a Prisma schema;
+- trpc's new api (e.g. `trpc.useQuery([example.hello])` has turned into `trpc.example.hello.useMutation()`);
+- using NextAuth with TRPC through protectedProcedure/publicProcedure;
+
+and I also improved my styling/design skills.
 
 ## Notes
 
